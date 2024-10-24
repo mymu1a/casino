@@ -1,9 +1,10 @@
-package com.example.casino
+package com.example.casino.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.ComponentActivity
+import com.example.casino.R
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

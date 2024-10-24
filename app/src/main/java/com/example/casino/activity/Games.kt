@@ -1,4 +1,4 @@
-package com.example.casino
+package com.example.casino.activity
 
 import GridItemDecoration
 import android.content.Intent
@@ -7,6 +7,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.casino.GamesAdapter
+import com.example.casino.R
 
 class Games : AppCompatActivity() {
 
