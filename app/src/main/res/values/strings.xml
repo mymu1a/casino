@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">casino</string>
+    <string name="login">login</string>
+    <string name="email">email@gmail.com</string>
+    <string name="password">123456</string>
+    <string name="registration">registration</string>
+    <string name="clickToLogin">clickToLogin</string>
+    <string name="clickToRegistration">clickToRegistration</string>
+    <string name="logout">logout</string>
+</resources>

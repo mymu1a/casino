@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_score"
+        android:text="1000"
+        android:textColor="@android:color/white"
+        android:padding="20dp"
+        android:background="@drawable/bg_text_color">
+
+    </TextView>
+
+    <FrameLayout
+        android:id="@+id/layout_bar"
+        android:background="@drawable/frame"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.example.casino.imageViewScrolling.ImageViewScrolling
+            android:id="@+id/image"
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:layout_gravity="center_vertical">
+
+        </com.example.casino.imageViewScrolling.ImageViewScrolling>
+
+        <com.example.casino.imageViewScrolling.ImageViewScrolling
+            android:id="@+id/image2"
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:layout_gravity="center_vertical">
+
+        </com.example.casino.imageViewScrolling.ImageViewScrolling>
+
+        <com.example.casino.imageViewScrolling.ImageViewScrolling
+            android:id="@+id/image3"
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:layout_gravity="center_vertical">
+
+        </com.example.casino.imageViewScrolling.ImageViewScrolling>
+
+    </LinearLayout>
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/layout_bar"
+        android:layout_alignBottom="@+id/layout_bar"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="-83dp"
+        android:layout_marginBottom="51dp"
+        android:layout_toEndOf="@+id/layout_bar"
+        android:src="@drawable/up">
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/down"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/layout_bar"
+        android:layout_alignBottom="@+id/layout_bar"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginBottom="-84dp"
+        android:layout_toEndOf="@+id/layout_bar"
+        android:src="@drawable/down">
+
+    </ImageView>
+
+</RelativeLayout>
