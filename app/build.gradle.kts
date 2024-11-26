@@ -59,8 +59,8 @@ dependencies {
     // Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
 
-    implementation("nl.dionsegijn:konfetti:2.0.0")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
+    //implementation("nl.dionsegijn:konfetti:2.0.0")
+    //implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
 
     // Konfetti library
     implementation(libs.konfetti.xml)

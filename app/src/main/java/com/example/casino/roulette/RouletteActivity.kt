@@ -5,37 +5,49 @@ import android.view.animation.Animation
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.RotateAnimation
 import android.widget.Button
+import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.casino.R
 import java.util.Random
 
 class RouletteActivity : AppCompatActivity() {
 
-    private lateinit var button: Button
-    private lateinit var textView: TextView
+    private lateinit var spinButton: Button
+    private lateinit var resultTextView: TextView
     private lateinit var ivWheel: ImageView
+    private lateinit var resultMessage: TextView
+    private lateinit var betButtons: GridLayout
 
     private val random = Random()
     private var degree = 0
     private var degreeOld = 0
+    private var selectedBet: Int? = null // Выбранное число для ставки
 
-    // Because there are 37 sectors on the wheel (9.72 degrees each)
-    private val FACTOR = 4.86f
+    private val FACTOR = 4.86f // Угол сектора колеса
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_roulette)
 
-        button = findViewById(R.id.button)
-        textView = findViewById(R.id.textView)
+        // Привязка виджетов к переменным
+        spinButton = findViewById(R.id.btn_spin)
+        resultMessage = findViewById(R.id.result_message)
         ivWheel = findViewById(R.id.iv_wheel)
+        betButtons = findViewById(R.id.bet_buttons)
 
-        button.setOnClickListener {
-            // Record the old degree
+        // Устанавливаем обработчик нажатий для кнопок ставок
+        setupBetButtons()
+
+        spinButton.setOnClickListener {
+            if (selectedBet == null) {
+                Toast.makeText(this, "Выберите число для ставки!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             degreeOld = degree % 360
-            // Randomly rotate the wheel
             degree = random.nextInt(3600) + 720
 
             val rotate = RotateAnimation(
@@ -48,19 +60,37 @@ class RouletteActivity : AppCompatActivity() {
                 interpolator = DecelerateInterpolator()
                 setAnimationListener(object : Animation.AnimationListener {
                     override fun onAnimationStart(animation: Animation?) {
-                        textView.text = ""
+                        resultMessage.text = ""
                     }
 
                     override fun onAnimationEnd(animation: Animation?) {
-                        textView.text = currentNumber(360 - (degree % 360))
+                        val result = currentNumber(360 - (degree % 360))
+                        resultMessage.text = "Выпало число: $result"
+
+                        val winningNumber = result.toIntOrNull()
+                        if (winningNumber == selectedBet) {
+                            Toast.makeText(this@RouletteActivity, "Поздравляем! Вы выиграли!", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this@RouletteActivity, "Увы, вы проиграли. Попробуйте снова!", Toast.LENGTH_SHORT).show()
+                        }
                     }
 
                     override fun onAnimationRepeat(animation: Animation?) {}
                 })
             }
 
-            // Start the animation
             ivWheel.startAnimation(rotate)
+        }
+    }
+
+    private fun setupBetButtons() {
+        for (i in 0 until betButtons.childCount) {
+            val button = betButtons.getChildAt(i) as? Button
+            button?.setOnClickListener {
+                val betNumber = button.text.toString().toIntOrNull()
+                selectedBet = betNumber
+                Toast.makeText(this, "Вы выбрали число: $betNumber", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
