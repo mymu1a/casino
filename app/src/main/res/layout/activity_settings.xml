@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="toGames"
-            android:text="toGames"
+            android:text="игры"
             android:layout_margin="8dp" />
 
         <!-- Кнопка перехода на MainActivity -->
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="toMainActivity"
-            android:text="toMainActivity"
+            android:text="главная"
             android:layout_margin="8dp" />
     </LinearLayout>
 

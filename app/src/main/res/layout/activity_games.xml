@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundgames"
+    android:background="@drawable/image1"
     tools:context=".activity.Games">
 
     <!-- RecyclerView для отображения игр -->
@@ -35,14 +35,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="toMainActivity"
-            android:text="MainActivity" />
+            android:text="главная" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="toSettings"
-            android:text="Settings" />
+            android:text="настройки" />
 
     </LinearLayout>
 

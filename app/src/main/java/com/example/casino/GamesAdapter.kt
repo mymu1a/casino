@@ -8,6 +8,7 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.casino.R
 import com.example.casino.blackJack.BlackJackActivity
+import com.example.casino.roulette.RouletteActivity
 import com.example.casino.slotMachine.*
 
 class GamesAdapter(
@@ -32,6 +33,8 @@ class GamesAdapter(
             val intent = when (imageResId) {
                 R.drawable.slot_machine -> Intent(context, SlotMachine::class.java)
                 R.drawable.blackjack -> Intent(context, BlackJackActivity::class.java)
+                R.drawable.roulette -> Intent(context, RouletteActivity
+                ::class.java)
 
                 else -> {
                     Toast.makeText(context, "Game not available", Toast.LENGTH_SHORT).show()

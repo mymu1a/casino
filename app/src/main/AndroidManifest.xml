@@ -47,6 +47,7 @@
         <activity
             android:name="com.example.casino.blackJack.BlackJackActivity" />
         <activity android:name="com.example.casino.blackJack.JackpotActivity" />
+        <activity android:name="com.example.casino.roulette.RouletteActivity" />
     </application>
 
 </manifest>
