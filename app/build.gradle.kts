@@ -59,11 +59,8 @@ dependencies {
     // Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
 
-    //implementation("nl.dionsegijn:konfetti:2.0.0")
-    //implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
-
-    // Konfetti library
-    implementation(libs.konfetti.xml)
+    implementation("nl.dionsegijn:konfetti-xml:2.0.4")
+    implementation ("com.github.jinatonic.confetti:confetti:1.1.2")
 
     // Core libraries
     implementation("androidx.core:core-ktx:1.6.0")
@@ -80,6 +77,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth.ktx)
+    implementation(libs.androidx.runtime.livedata)
 
     // Testing dependencies
     testImplementation(libs.junit)

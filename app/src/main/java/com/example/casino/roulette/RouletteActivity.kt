@@ -1,6 +1,7 @@
 package com.example.casino.roulette
 
 import android.os.Bundle
+import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.RotateAnimation
@@ -11,11 +12,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.casino.R
+import com.github.jinatonic.confetti.CommonConfetti
 import java.util.Random
 
 class RouletteActivity : AppCompatActivity() {
 
     private lateinit var spinButton: Button
+    private lateinit var redBetButton: Button
+    private lateinit var blackBetButton: Button
     private lateinit var resultTextView: TextView
     private lateinit var ivWheel: ImageView
     private lateinit var resultMessage: TextView
@@ -25,6 +29,7 @@ class RouletteActivity : AppCompatActivity() {
     private var degree = 0
     private var degreeOld = 0
     private var selectedBet: Int? = null // Выбранное число для ставки
+    private var selectedColorBet: String? = null // Ставка на цвет (red/black)
 
     private val FACTOR = 4.86f // Угол сектора колеса
 
@@ -34,6 +39,8 @@ class RouletteActivity : AppCompatActivity() {
 
         // Привязка виджетов к переменным
         spinButton = findViewById(R.id.btn_spin)
+        redBetButton = findViewById(R.id.btn_redd)
+        blackBetButton = findViewById(R.id.btn_black)
         resultMessage = findViewById(R.id.result_message)
         ivWheel = findViewById(R.id.iv_wheel)
         betButtons = findViewById(R.id.bet_buttons)
@@ -41,9 +48,21 @@ class RouletteActivity : AppCompatActivity() {
         // Устанавливаем обработчик нажатий для кнопок ставок
         setupBetButtons()
 
+        redBetButton.setOnClickListener {
+            selectedColorBet = "red"
+            selectedBet = null
+            Toast.makeText(this, "Вы сделали ставку на красное", Toast.LENGTH_SHORT).show()
+        }
+
+        blackBetButton.setOnClickListener {
+            selectedColorBet = "black"
+            selectedBet = null
+            Toast.makeText(this, "Вы сделали ставку на черное", Toast.LENGTH_SHORT).show()
+        }
+
         spinButton.setOnClickListener {
-            if (selectedBet == null) {
-                Toast.makeText(this, "Выберите число для ставки!", Toast.LENGTH_SHORT).show()
+            if (selectedBet == null && selectedColorBet == null) {
+                Toast.makeText(this, "Выберите ставку!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -67,12 +86,24 @@ class RouletteActivity : AppCompatActivity() {
                         val result = currentNumber(360 - (degree % 360))
                         resultMessage.text = "Выпало число: $result"
 
-                        val winningNumber = result.toIntOrNull()
-                        if (winningNumber == selectedBet) {
-                            Toast.makeText(this@RouletteActivity, "Поздравляем! Вы выиграли!", Toast.LENGTH_SHORT).show()
-                        } else {
-                            Toast.makeText(this@RouletteActivity, "Увы, вы проиграли. Попробуйте снова!", Toast.LENGTH_SHORT).show()
+                        val (winningNumber, winningColor) = parseResult(result)
+
+                        when {
+                            selectedBet != null && winningNumber == selectedBet -> {
+                                showConfetti()
+                                Toast.makeText(this@RouletteActivity, "Поздравляем! Вы угадали число!", Toast.LENGTH_SHORT).show()
+                            }
+                            selectedColorBet != null && winningColor == selectedColorBet -> {
+                                showConfetti()
+                                Toast.makeText(this@RouletteActivity, "Поздравляем! Вы угадали цвет!", Toast.LENGTH_SHORT).show()
+                            }
+                            else -> {
+                                Toast.makeText(this@RouletteActivity, "Увы, вы проиграли. Попробуйте снова!", Toast.LENGTH_SHORT).show()
+                            }
                         }
+
+                        selectedBet = null
+                        selectedColorBet = null
                     }
 
                     override fun onAnimationRepeat(animation: Animation?) {}
@@ -89,16 +120,19 @@ class RouletteActivity : AppCompatActivity() {
             button?.setOnClickListener {
                 val betNumber = button.text.toString().toIntOrNull()
                 selectedBet = betNumber
+                selectedColorBet = null
                 Toast.makeText(this, "Вы выбрали число: $betNumber", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    /**
-     * Returns the number and color based on the degrees.
-     * @param degrees The angle to evaluate.
-     * @return Number & color string.
-     */
+    private fun parseResult(result: String): Pair<Int?, String?> {
+        val parts = result.split(" ")
+        val number = parts.getOrNull(0)?.toIntOrNull()
+        val color = parts.getOrNull(1)
+        return number to color
+    }
+
     private fun currentNumber(degrees: Int): String {
         return when {
             degrees in (FACTOR * 1).toInt() until (FACTOR * 3).toInt() -> "32 red"
@@ -140,5 +174,12 @@ class RouletteActivity : AppCompatActivity() {
             degrees in (FACTOR * 73).toInt() until 360 || degrees in 0 until (FACTOR * 1).toInt() -> "0"
             else -> ""
         }
+    }
+
+    private fun showConfetti() {
+        CommonConfetti.rainingConfetti(
+            findViewById(R.id.roulette_layout),
+            intArrayOf(0xFFE53935.toInt(), 0xFF43A047.toInt(), 0xFF1E88E5.toInt())
+        ).stream(3000)
     }
 }

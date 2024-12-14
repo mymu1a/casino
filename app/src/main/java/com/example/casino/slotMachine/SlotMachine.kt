@@ -11,6 +11,8 @@ import com.example.casino.imageViewScrolling.IEventEnd
 import com.example.casino.imageViewScrolling.ImageViewScrolling
 import com.example.casino.Common
 import kotlin.random.Random
+import com.github.jinatonic.confetti.CommonConfetti
+import nl.dionsegijn.konfetti.xml.KonfettiView
 
 class SlotMachine : AppCompatActivity(), IEventEnd {
 
@@ -20,6 +22,7 @@ class SlotMachine : AppCompatActivity(), IEventEnd {
     private lateinit var txtScore: TextView
     private lateinit var up: ImageView
     private lateinit var down: ImageView
+    private lateinit var konfettiView: KonfettiView
 
     private var countDown = 0
 
@@ -37,10 +40,12 @@ class SlotMachine : AppCompatActivity(), IEventEnd {
                 Toast.makeText(this, "You win BIG prize!", Toast.LENGTH_SHORT).show()
                 Common.SCORE += 300
                 showBigWinAnimation()  // Показать анимацию при большом выигрыше
+                showConfetti() // Показать конфетти при выигрыше
             } else if (image.value == image2.value || image2.value == image3.value || image.value == image3.value) {
                 // Маленький выигрыш
                 Toast.makeText(this, "You win small prize", Toast.LENGTH_SHORT).show()
                 Common.SCORE += 100
+                showConfetti() // Показать конфетти при выигрыше
             } else {
                 // Проигрыш
                 Toast.makeText(this, "You lose", Toast.LENGTH_SHORT).show()
@@ -56,6 +61,7 @@ class SlotMachine : AppCompatActivity(), IEventEnd {
         winDialog.show(supportFragmentManager, "WinAnimationDialog")
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_view_scrolling)
@@ -67,6 +73,7 @@ class SlotMachine : AppCompatActivity(), IEventEnd {
         txtScore = findViewById(R.id.txt_score)
         up = findViewById(R.id.up)
         down = findViewById(R.id.down)
+        konfettiView = findViewById(R.id.konfettiViewSlot) // Инициализация
 
         // Установка обработчика события окончания
         image.setEventEnd(this)
@@ -102,6 +109,14 @@ class SlotMachine : AppCompatActivity(), IEventEnd {
                 up.visibility = View.VISIBLE
             }
         }
+    }
+
+    // Метод для показа конфетти
+    private fun showConfetti() {
+        CommonConfetti.rainingConfetti(
+            findViewById(R.id.slot_machine_layout), // Убедитесь, что это правильный идентификатор
+            intArrayOf(0xFFE53935.toInt(), 0xFF43A047.toInt(), 0xFF1E88E5.toInt())
+        ).stream(3000)
     }
 
     // Сохранение состояния для счетчика и текущего состояния вращения

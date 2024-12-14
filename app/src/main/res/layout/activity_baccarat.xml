@@ -1,0 +1,77 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/baccarat_layout"
+    android:padding="16dp"
+    android:background="@color/green">
+
+    <!-- Конфетти -->
+    <nl.dionsegijn.konfetti.xml.KonfettiView
+        android:id="@+id/konfettiViewBaccarat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="5dp"
+        android:visibility="gone"/>
+
+    <!-- Карты дилера -->
+    <LinearLayout
+        android:id="@+id/dealerCardsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Колода карт -->
+    <ImageView
+        android:id="@+id/deckImageView"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:src="@drawable/gray_back"
+        android:layout_gravity="center" />
+
+    <!-- Карты игрока -->
+    <LinearLayout
+        android:id="@+id/playerCardsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp" />
+
+    <!-- Кнопки -->
+    <Button
+        android:id="@+id/startGameButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="новая игра" />
+
+    <Button
+        android:id="@+id/takeCardButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="взять карту"
+        android:layout_marginTop="8dp"
+        android:enabled="false" />
+
+    <Button
+        android:id="@+id/drawCardButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="конец"
+        android:layout_marginTop="8dp"
+        android:enabled="false" />
+
+    <!-- Результат игры -->
+    <TextView
+        android:id="@+id/scoreText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="16dp" />
+</LinearLayout>

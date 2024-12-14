@@ -4,8 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/roulette_layout"
     tools:context="com.example.casino.roulette.RouletteActivity"
     android:background="@color/light_green">
+
+    <!-- Виджет Konfetti -->
+    <nl.dionsegijn.konfetti.xml.KonfettiView
+        android:id="@+id/konfettiView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="5dp"/>
 
     <!-- Колесо рулетки -->
     <ImageView
@@ -89,7 +97,7 @@
             android:layout_height="48dp"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:background="@color/red"
+            android:background="@color/redd"
             android:text="1"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -111,7 +119,7 @@
             android:layout_height="48dp"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:background="@color/red"
+            android:background="@color/redd"
             android:text="3"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -133,7 +141,7 @@
             android:layout_height="48dp"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:background="@color/red"
+            android:background="@color/redd"
             android:text="5"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -155,7 +163,7 @@
             android:layout_height="48dp"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:background="@color/red"
+            android:background="@color/redd"
             android:text="7"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -177,7 +185,7 @@
             android:layout_height="48dp"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:background="@color/red"
+            android:background="@color/redd"
             android:text="9"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -199,7 +207,7 @@
             android:layout_height="48dp"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:background="@color/red"
+            android:background="@color/redd"
             android:text="11"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -221,7 +229,7 @@
             android:layout_height="48dp"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:background="@color/red"
+            android:background="@color/redd"
             android:text="13"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -243,7 +251,7 @@
             android:layout_height="48dp"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:background="@color/red"
+            android:background="@color/redd"
             android:text="15"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -265,7 +273,7 @@
             android:layout_height="48dp"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:background="@color/red"
+            android:background="@color/redd"
             android:text="17"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -287,7 +295,7 @@
             android:layout_height="48dp"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:background="@color/red"
+            android:background="@color/redd"
             android:text="19"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -309,7 +317,7 @@
             android:layout_height="48dp"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:background="@color/red"
+            android:background="@color/redd"
             android:text="21"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -331,7 +339,7 @@
             android:layout_height="48dp"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:background="@color/red"
+            android:background="@color/redd"
             android:text="23"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -353,7 +361,7 @@
             android:layout_height="48dp"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:background="@color/red"
+            android:background="@color/redd"
             android:text="25"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -375,7 +383,7 @@
             android:layout_height="48dp"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:background="@color/red"
+            android:background="@color/redd"
             android:text="27"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -397,7 +405,7 @@
             android:layout_height="48dp"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:background="@color/red"
+            android:background="@color/redd"
             android:text="29"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -419,7 +427,7 @@
             android:layout_height="48dp"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:background="@color/red"
+            android:background="@color/redd"
             android:text="31"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -441,7 +449,7 @@
             android:layout_height="48dp"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:background="@color/red"
+            android:background="@color/redd"
             android:text="33"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -463,7 +471,7 @@
             android:layout_height="48dp"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
-            android:background="@color/red"
+            android:background="@color/redd"
             android:text="35"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
@@ -479,6 +487,29 @@
             android:textColor="@android:color/white"
             android:textSize="16sp" />
 
+        <!-- Кнопка "Красное" -->
+        <Button
+            android:id="@+id/btn_redd"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@color/redd"
+            android:text="red"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <!-- Кнопка "Черное" -->
+        <Button
+            android:id="@+id/btn_black"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            android:background="@color/black"
+            android:text="black"
+            android:textColor="@android:color/white"
+            android:textSize="16dp" />
     </GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

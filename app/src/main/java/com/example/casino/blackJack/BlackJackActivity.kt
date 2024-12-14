@@ -1,9 +1,5 @@
 package com.example.casino.blackJack
 
-/*import nl.dionsegijn.konfetti.xml.KonfettiView
-import nl.dionsegijn.konfetti.models.Size
-import nl.dionsegijn.konfetti.models.Shape*/
-
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
@@ -15,6 +11,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.addListener
 import com.example.casino.R
+import com.github.jinatonic.confetti.CommonConfetti
+import nl.dionsegijn.konfetti.xml.KonfettiView
 
 class BlackJackActivity : AppCompatActivity(), GameUI {
 
@@ -30,10 +28,13 @@ class BlackJackActivity : AppCompatActivity(), GameUI {
 
     private lateinit var deckImage: ImageView
     private lateinit var animatedCard: ImageView // Карта для анимации
+    private lateinit var konfettiView: KonfettiView // Конфетти
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_blackjack)
+
+        konfettiView = findViewById(R.id.konfettiViewBlack) // Инициализация
 
         // Инициализация карт и элементов
         playerCardViews = listOf(
@@ -90,23 +91,20 @@ class BlackJackActivity : AppCompatActivity(), GameUI {
         hitButton.isEnabled = true
         standButton.isEnabled = true
 
-/*        if (result.contains("Победа", true)) {
-            launchConfetti()
-        }*/
+        // Проверяем, выиграл ли игрок
+        if (result.contains("Победа")) {
+            showConfetti()
+        }
     }
 
-/*    private fun launchConfetti() {
-        konfettiView.build()
-            .addColors(android.graphics.Color.YELLOW, android.graphics.Color.GREEN, android.graphics.Color.MAGENTA)
-            .setDirection(0.0, 359.0) // Направление конфетти: 360 градусов
-            .setSpeed(1f, 5f) // Скорость конфетти
-            .setFadeOutEnabled(true) // Конфетти исчезают
-            .setTimeToLive(2000L) // Время жизни конфетти
-            .addSizes(Size.SMALL, Size.MEDIUM) // Размеры конфетти
-            .setPosition(-50f, konfettiView.width + 50f, -50f, konfettiView.height.toFloat() + 50f)
-            .streamFor(300, 3000L) // Количество частиц и длительность
-    }*/
-
+    // Метод для показа конфетти
+    private fun showConfetti() {
+        konfettiView.visibility = View.VISIBLE
+        CommonConfetti.rainingConfetti(
+            findViewById(R.id.blackjack_layout), // Передаем родительский элемент
+            intArrayOf(0xFFE53935.toInt(), 0xFF43A047.toInt(), 0xFF1E88E5.toInt())
+        ).stream(3000)
+    }
 
     private fun showJackpot() {
         val intent = Intent(this, JackpotActivity::class.java)

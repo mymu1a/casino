@@ -2,16 +2,16 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/blackjack_layout"
     android:layout_height="match_parent"
     android:background="@drawable/frame">
 
-
+    <!-- Конфетти -->
     <nl.dionsegijn.konfetti.xml.KonfettiView
-        android:id="@+id/konfetti_view"
+        android:id="@+id/konfettiViewBlack"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone" />
-
+        />
 
     <!-- Верхний блок -->
     <FrameLayout
